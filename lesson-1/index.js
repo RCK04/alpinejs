@@ -4,7 +4,7 @@ document.addEventListener('alpine:init', () => {
         name: 'Mario',
 
         logCount(){
-            console.log(this.count)
+            console.log(this.count);
         },
     }))
 });

@@ -12,13 +12,13 @@
 </head>
 <body>
 
-    <form x-data="signupForm">
+    <form x-data="signupForm" @submit.prevent="submitForm">
         <h1>Ninja Signup Form</h1>
 
-        <button type="button">Click</button>
-        <button type="button">mouseleave</button>
-        <button type="button">dblclick</button>
-        <input type="text">
+        <button type="button" x-on:click.shift="console.log('click')">Click</button>
+        <button type="button" x-on:mouseleave.ctrl="console.log('mouseleave')">mouseleave</button>
+        <button type="button" x-on:dblclick="console.log('dblclick')">dblclick</button>
+        <input type="text" @keyup="console.log('keyup')">
 
         <!-- username -->
         <div class="form-field">

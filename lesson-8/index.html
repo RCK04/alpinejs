@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine.js</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="./index.js"></script>
+
+</head>
+<body>
+
+    <form x-data="signupForm" @submit.prevent="submitForm">
+        <h1>Ninja Signup Form</h1>
+
+        <!-- username -->
+        <div class="form-field">
+          <p class="hint" x-bind:class="{'warning': username.length > 10}">
+            <span x-text="15 - username.length"></span> characters remaining
+          </p>
+          <label>
+            <span></span>Username:
+            <input 
+              type="text" 
+              maxlength="15"
+              x-model="username"
+              >
+          </label>
+
+          <template x-if="errors.username">
+            <p class="error" x-text="errors.username"></p>
+          </template>
+
+        </div>
+    
+        <!-- password -->
+        <div class="form-field password">
+          <label>
+            <span>Password:</span>
+            <input :type="showPass ? 'text' : 'password'" x-model="password">
+          </label>
+
+        <button type="button" @click="showPass = !showPass">
+          <span x-text="showPass ? 'Hide' : 'Show'"></span>
+        </button>
+
+        <template x-if="errors.password">
+          <p class="error" x-text="errors.password"></p>
+        </template>
+
+        </div>
+    
+        <!-- confirm password -->
+        <div class="form-field">
+          <label>
+            <span>Confirm Password:</span>
+            <input type="password" x-model="passwordConfirm">
+          </label>
+
+          <template x-if="errors.passwordConfirm">
+            <p class="error" x-text="errors.passwordConfirm"></p>
+          </template>
+
+        </div>
+    
+        <!-- belt color -->
+        <div class="form-field">
+          <label>Belt Color:
+            <select x-model="belt">
+              <option value="">Select a belt</option>
+              <template x-for="(beltColor, index) in beltColors" :key="beltColor">
+                <option x-bind:value="beltColor" x-text="beltColor"></option>
+              </template>
+            </select>
+          </label>
+
+          <template x-if="errors.belt">
+            <p class="error" x-text="errors.belt"></p>
+          </template>
+
+        </div>
+    
+        <!-- short bio -->
+        <div class="form-field">
+          <p class="hint" x-bind:class="{'warning': bio.length > 90}">
+            <span x-text="100 - bio.length"></span> characters remaining
+          </p>
+          <label>
+            <span>Short Bio:</span>
+            <textarea maxlength="100" x-model="bio"></textarea>
+          </label>
+          
+          <template x-if="errors.bio">
+            <p class="error" x-text="errors.bio"></p>
+          </template>
+        </div>
+    
+        <!-- newsletter signup -->
+        <div class="form-field newsletter">
+          <label>
+            <input type="checkbox" x-model="newsletter">
+            <span>Sign up for the newsletter</span>
+          </label>
+
+       
+
+        </div>
+    
+        <!-- submit button -->
+        <button type="submit">Submit</button>
+      </form>
+    
+</body>
+</html>
